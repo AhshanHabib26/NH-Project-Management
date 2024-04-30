@@ -1,6 +1,6 @@
 "use client";
-import NHForm from "@/components/form/NHForm";
-import NHInput from "@/components/form/NHInput";
+import NHForm from "@/components/Form/NHForm";
+import NHInput from "@/components/Form/NHInput";
 import { Button, Row } from "antd";
 import Link from "next/link";
 import React from "react";
