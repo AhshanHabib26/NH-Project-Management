@@ -15,8 +15,6 @@ const sideItems = [
   },
 ];
 
-
-
 const items = sideItems.map((item) => ({
   key: item.name,
   label: <Link href={`/dashboard/${item.path}`}>{item.name}</Link>,
@@ -37,7 +35,9 @@ const DashboardMenu = ({ children }: { children: React.ReactNode }) => {
         }}
       >
         <div className="flex items-center justify-center my-5">
-          <h1 className="text-white text-xl font-semibold">NHP Management</h1>
+          <Link href="/">
+            <h1 className="text-white text-xl font-semibold">NHP Management</h1>
+          </Link>
         </div>
         <Menu
           theme="dark"
@@ -59,7 +59,8 @@ const DashboardMenu = ({ children }: { children: React.ReactNode }) => {
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
-          NH Project Management ©{new Date().getFullYear()} Designed By Ahshan Habib
+          NH Project Management ©{new Date().getFullYear()} Designed By Ahshan
+          Habib
         </Footer>
       </Layout>
     </Layout>

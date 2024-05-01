@@ -2,14 +2,28 @@
 
 import NHForm from "@/components/Form/NHForm";
 import NHInput from "@/components/Form/NHInput";
+import { userLogin } from "@/utils/actions/userLogin";
 import { Button, Row } from "antd";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { FieldValues } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
+  const router = useRouter();
   const onSubmit = async (data: FieldValues) => {
-    console.log(data);
+    try {
+      const res = await userLogin(data);
+      if (res?.success) {
+        toast.success(res?.message);
+        router.push("/dashboard");
+      } else if (!res?.success) {
+        toast.error(res.message);
+      }
+    } catch (err: any) {
+      console.log(err);
+    }
   };
 
   return (
