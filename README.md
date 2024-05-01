@@ -4,7 +4,7 @@
 - Project Technology:
   - Frontend: NextJS, TypeScript, Tailwind.
 - Project URL:
-  - For Frontend: [``]
+  - For Frontend: [`https://nh-project-management.vercel.app/`]
 
 ### Project Details (Frontend)
 
@@ -17,8 +17,6 @@
   - Dashboard
   - All Project
   * Task Management (CRUD)
-
-### This Website Totally User Friendly and Fully Responsive, Please review this awesome projects and feel free and give your opinion Or any suggestions. Really, it's my pleasure.
 
 ## For Using This Awesome Project On Your Local Machine, Getting Started
 
@@ -49,3 +47,4 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+### This Website Totally User Friendly and Fully Responsive, Please review this awesome projects and feel free and give your opinion Or any suggestions. Really, it's my pleasure.
