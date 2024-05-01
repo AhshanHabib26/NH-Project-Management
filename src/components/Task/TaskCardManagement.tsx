@@ -10,11 +10,9 @@ import { Server } from "lucide-react";
 
 const TaskCardManagement = () => {
   const { tasks } = useStore();
-
   const [filteredTasks, setFilteredTasks] = useState<ITaskProps[]>(tasks);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-
 
   useEffect(() => {
     setFilteredTasks(tasks);
