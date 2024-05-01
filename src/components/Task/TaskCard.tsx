@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import React, { useState } from "react";
 import TaskViewModal from "./TaskViewModal";
+import TaskModal from "./TaskModal";
 
 const TaskCard: React.FC<ITaskProps> = ({
   id,
@@ -22,12 +23,18 @@ const TaskCard: React.FC<ITaskProps> = ({
   assignee,
   status,
 }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState<number | null>(null);
 
   const handleTaskView = (taskId: number) => {
     setSelectedTaskId(taskId);
-    setIsModalOpen(true);
+    setIsViewModalOpen(true);
+  };
+
+  const handleTaskEdit = (taskId: number) => {
+    setSelectedTaskId(taskId);
+    setIsEditModalOpen(true);
   };
 
   return (
@@ -66,13 +73,22 @@ const TaskCard: React.FC<ITaskProps> = ({
       </div>
       <div className="flex items-center justify-end mt-5 cursor-pointer">
         <Eye size={20} onClick={() => handleTaskView(id)} />
-        <SquarePen size={20} className="mx-3" />
+        <SquarePen
+          size={20}
+          className="mx-3"
+          onClick={() => handleTaskEdit(id)}
+        />
         <Trash2 size={20} />
       </div>
       <TaskViewModal
-        open={isModalOpen}
+        open={isViewModalOpen}
         taskId={selectedTaskId}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => setIsViewModalOpen(false)}
+      />
+      <TaskModal
+        open={isEditModalOpen}
+        taskId={selectedTaskId}
+        onClose={() => setIsEditModalOpen(false)}
       />
     </div>
   );

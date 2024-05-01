@@ -29,3 +29,10 @@ export type TProjectDataType = {
     assignee: string;
     status: string;
   }
+
+
+  export interface ITaskModalProps {
+    open: boolean;
+    taskId: number | null;
+    onClose: () => void;
+  }
