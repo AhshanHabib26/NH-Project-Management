@@ -20,21 +20,18 @@ const TaskCardManagement = () => {
   }, [tasks]);
 
   const handleFilterByStatus = (status: string) => {
-    setFilteredTasks((prevTasks) =>
-      prevTasks.filter((task) => task.status === status)
-    );
+    setFilteredTasks(tasks.filter((task) => task.status === status));
   };
 
   const handleSearchQuery = (query: string) => {
     setSearchQuery(query);
-    setFilteredTasks((prevTasks) =>
-      prevTasks.filter(
-        (task) =>
-          task.name.toLowerCase().includes(query.toLowerCase()) ||
-          task.deadline.includes(query) ||
-          task.assignee.toLowerCase().includes(query.toLowerCase())
-      )
+    const filtered = tasks.filter(
+      (task) =>
+        task.name.toLowerCase().includes(query.toLowerCase()) ||
+        task.deadline.includes(query) ||
+        task.assignee.toLowerCase().includes(query.toLowerCase())
     );
+    setFilteredTasks(filtered);
   };
 
   return (
