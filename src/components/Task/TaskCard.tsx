@@ -26,7 +26,7 @@ const TaskCard: React.FC<ITaskProps> = ({
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
   const [isStatusUpdateModalOpen, setIsStatusUpdateModalOpen] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState<number | null>(null);
-  const { deleteTask } = useStore();
+  const { deleteTask, handleDrop } = useStore();
 
   const handleTaskView = (taskId: number) => {
     setSelectedTaskId(taskId);
@@ -38,8 +38,28 @@ const TaskCard: React.FC<ITaskProps> = ({
     setSelectedTaskId(taskId);
   };
 
+  const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
+    e.dataTransfer.setData("taskId", id.toString());
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+  };
+
+  const handleDragDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    const taskId = parseInt(e.dataTransfer.getData("taskId"), 10);
+    handleDrop(taskId, "Done");
+  };
+
   return (
-    <div className=" shadow border border-gray-200 p-5 rounded-lg">
+    <div
+      draggable
+      onDragStart={handleDragStart}
+      onDragOver={handleDragOver}
+      onDrop={handleDragDrop}
+      className=" shadow border border-gray-200 p-5 rounded-lg"
+    >
       <h1 className="text-lg font-semibold text-slate-600">{name}</h1>
       <div className=" flex items-center justify-between mt-3">
         <div className=" flex items-center">

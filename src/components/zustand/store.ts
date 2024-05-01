@@ -18,6 +18,7 @@ export type Actions = {
   addTask: (newTask: ITask) => void;
   updateStatus: (id: number, newStatus: string) => void;
   deleteTask: (id: number) => void;
+  handleDrop: (taskId: number, newStatus: string) => void;
 };
 
 export type StoreType = IState & Actions;
@@ -48,7 +49,7 @@ const useStore = create<StoreType>()(
           description: "Define database tables and relationships",
           deadline: "2024-05-12",
           assignee: "Charlie Brown",
-          status: "Completed",
+          status: "Done",
         },
         {
           id: 4,
@@ -89,6 +90,18 @@ const useStore = create<StoreType>()(
         set((state) => {
           const updatedTask = state.tasks.filter((task) => task.id !== id);
           return { tasks: updatedTask };
+        });
+      },
+      handleDrop: (taskId, newStatus) => {
+        set((state) => {
+          const updatedTasks = state.tasks.map((task) => {
+            if (task.id === taskId) {
+              return { ...task, status: newStatus };
+            }
+            return task;
+          });
+
+          return { tasks: updatedTasks };
         });
       },
     }),

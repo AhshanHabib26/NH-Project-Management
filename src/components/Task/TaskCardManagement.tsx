@@ -15,6 +15,7 @@ const TaskCardManagement = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
+
   useEffect(() => {
     setFilteredTasks(tasks);
   }, [tasks]);
@@ -54,7 +55,7 @@ const TaskCardManagement = () => {
             options={[
               { value: "In Progress", label: "In Progress" },
               { value: "To Do", label: "To Do" },
-              { value: "Completed", label: "Completed" },
+              { value: "Done", label: "Done" },
             ]}
           />
         </div>
@@ -71,7 +72,9 @@ const TaskCardManagement = () => {
       {filteredTasks.length === 0 ? (
         <div className="flex flex-col items-center justify-center mt-32">
           <Server size={30} color="#94A3B8" />
-          <h1 className=" text-2xl font-light text-slate-400 italic">There is no Task!</h1>
+          <h1 className=" text-2xl font-light text-slate-400 italic">
+            There is no Task!
+          </h1>
         </div>
       ) : (
         <div className=" grid grid-cols-1 lg:grid-cols-2 gap-6">
