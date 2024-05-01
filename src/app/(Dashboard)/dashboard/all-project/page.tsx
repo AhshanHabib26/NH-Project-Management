@@ -5,28 +5,10 @@ import Link from "next/link";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProjectData } from "@/actions/fetchProjectData";
+import NHLoader from "@/libs/loader/Loader";
+import { TProjectDataType } from "@/types/types.global";
 
-type TProjectDataType = {
-  id: number;
-  name: string;
-  description: string;
-  tasks: {
-    id: number;
-    title: string;
-    description: string;
-    assignee: string;
-    status: string;
-  }[];
-  teamMembers: {
-    id: number;
-    name: string;
-    role: string;
-  }[];
-  recentActivities: {
-    id: number;
-    description: string;
-  }[];
-};
+
 
 const AllProjectPage = () => {
   // const projects = getAllProjectsData();
@@ -37,7 +19,7 @@ const AllProjectPage = () => {
   });
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <NHLoader />;
   }
 
   const columns = [
