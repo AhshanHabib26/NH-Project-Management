@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TaskCard from "./TaskCard";
 import { useStore } from "../zustand/store";
 import { Button, Input, Select } from "antd";
@@ -14,19 +14,26 @@ const TaskCardManagement = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
+  useEffect(() => {
+    setFilteredTasks(tasks);
+  }, [tasks]);
+
   const handleFilterByStatus = (status: string) => {
-    setFilteredTasks(tasks.filter((task) => task.status === status));
+    setFilteredTasks(prevTasks =>
+      prevTasks.filter((task) => task.status === status)
+    );
   };
 
   const handleSearchQuery = (query: string) => {
     setSearchQuery(query);
-    const filtered = tasks.filter(
-      (task) =>
-        task.name.toLowerCase().includes(query.toLowerCase()) ||
-        task.deadline.includes(query) ||
-        task.assignee.toLowerCase().includes(query.toLowerCase())
+    setFilteredTasks(prevTasks =>
+      prevTasks.filter(
+        (task) =>
+          task.name.toLowerCase().includes(query.toLowerCase()) ||
+          task.deadline.includes(query) ||
+          task.assignee.toLowerCase().includes(query.toLowerCase())
+      )
     );
-    setFilteredTasks(filtered);
   };
 
   return (

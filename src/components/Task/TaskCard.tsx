@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import React, { useState } from "react";
 import TaskViewModal from "./TaskViewModal";
-import TaskModal from "./TaskModal";
 import TaskStatusUpdateModal from "./TaskStatusUpdateModal";
 
 const TaskCard: React.FC<ITaskProps> = ({
