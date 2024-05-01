@@ -12,11 +12,11 @@ interface ITask {
 
 interface IState {
   tasks: ITask[];
- 
 }
 
 export type Actions = {
   addTask: (newTask: ITask) => void;
+  updateStatus: (id: number, newStatus: string) => void; 
 };
 
 export type StoreType = IState & Actions;
@@ -61,6 +61,18 @@ const useStore = create<StoreType>()(
       addTask: (newTask) => {
         set((state) => {
           return { tasks: [...state.tasks, newTask] };
+        });
+      },
+      updateStatus: (id, newStatus) => {
+        set((state) => {
+          const updatedTasks = state.tasks.map((task) => {
+            if (task.id === id) {
+              return { ...task, status: newStatus };
+            }
+            return task;
+          });
+  
+          return { tasks: updatedTasks };
         });
       },
     }),
