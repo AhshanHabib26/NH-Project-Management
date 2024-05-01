@@ -1,3 +1,4 @@
+import { ITaskProps } from "@/types/types.global";
 import {
   CalendarDays,
   MessageCircleCode,
@@ -7,23 +8,6 @@ import {
 } from "lucide-react";
 import React from "react";
 
-// const data = {
-//   id: 1,
-//   name: "Design Landing Page",
-//   description: "Create wireframes and mockups for the landing page",
-//   deadline: "2024-05-15",
-//   assignee: "Alice Smith",
-//   status: "Done",
-// };
-
-interface ITaskProps {
-  id: number;
-  name: string;
-  description: string;
-  deadline: string;
-  assignee: string;
-  status: string;
-}
 
 const TaskCard: React.FC<ITaskProps> = ({
   name,

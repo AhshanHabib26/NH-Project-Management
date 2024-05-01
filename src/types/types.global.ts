@@ -19,3 +19,13 @@ export type TProjectDataType = {
       description: string;
     }[];
   };
+
+
+  export interface ITaskProps {
+    id: number;
+    name: string;
+    description: string;
+    deadline: string;
+    assignee: string;
+    status: string;
+  }

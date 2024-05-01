@@ -61,7 +61,7 @@ const useStore = create<IState>((set) => ({
       description: "Conduct unit tests and fix reported bugs",
       deadline: "2024-05-28",
       assignee: "Frank Wilson",
-      status: "To Do",
+      status: "Completed",
     },
     {
       id: 7,
@@ -77,7 +77,7 @@ const useStore = create<IState>((set) => ({
       description: "Prepare application for deployment on production server",
       deadline: "2024-05-30",
       assignee: "Henry Wang",
-      status: "To Do",
+      status: "In Progress",
     },
     {
       id: 9,
@@ -85,7 +85,7 @@ const useStore = create<IState>((set) => ({
       description: "Gather feedback from users and make necessary improvements",
       deadline: "2024-05-27",
       assignee: "Ivy Garcia",
-      status: "In Progress",
+      status: "Completed",
     },
     {
       id: 10,
