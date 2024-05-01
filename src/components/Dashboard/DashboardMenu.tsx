@@ -65,7 +65,7 @@ const DashboardMenu = ({ children }: { children: React.ReactNode }) => {
         <Content style={{ margin: "24px 16px 0" }}>
           <div
             style={{
-              padding: 24,
+              padding: 5,
               minHeight: 360,
             }}
           >
