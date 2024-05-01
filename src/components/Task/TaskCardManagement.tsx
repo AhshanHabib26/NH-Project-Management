@@ -29,7 +29,7 @@ const TaskCardManagement = () => {
 
   return (
     <div>
-      <div className=" flex items-center justify-between mb-5">
+      <div className=" flex items-center justify-between mb-5 gap-2">
         <div className=" w-1/2">
           <Input
             size="large"
