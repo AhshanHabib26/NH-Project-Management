@@ -4,7 +4,7 @@ import { Button, Table } from "antd";
 import Link from "next/link";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchProjectData } from "@/actions/fetchProjectData";
+import { fetchProjectData } from "@/utils/actions/fetchProjectData";
 import NHLoader from "@/libs/loader/Loader";
 import { TProjectDataType } from "@/types/types.global";
 

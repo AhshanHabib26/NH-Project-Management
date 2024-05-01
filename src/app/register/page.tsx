@@ -1,14 +1,29 @@
 "use client";
 import NHForm from "@/components/Form/NHForm";
 import NHInput from "@/components/Form/NHInput";
+import { userRegister } from "@/utils/actions/userRegister";
 import { Button, Row } from "antd";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { FieldValues } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const RegisterPage = () => {
+  const router = useRouter();
+
   const onSubmit = async (data: FieldValues) => {
-    console.log(data);
+    try {
+      const res = await userRegister(data);
+      if (res?.success) {
+        toast.success(res?.message);
+        router.push("/login");
+      } else if (!res?.success) {
+        toast.error(res.message);
+      }
+    } catch (err: any) {
+      console.log(err);
+    }
   };
 
   return (
