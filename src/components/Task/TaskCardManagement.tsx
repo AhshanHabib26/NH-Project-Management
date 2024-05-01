@@ -3,14 +3,16 @@
 import React, { useState } from "react";
 import TaskCard from "./TaskCard";
 import { useStore } from "../zustand/store";
-import { Input, Select } from "antd";
+import { Button, Input, Select } from "antd";
 import { ITaskProps } from "@/types/types.global";
+import TaskModal from "./TaskModal";
 
 const TaskCardManagement = () => {
   const { tasks } = useStore();
 
   const [filteredTasks, setFilteredTasks] = useState<ITaskProps[]>(tasks);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const handleFilterByStatus = (status: string) => {
     setFilteredTasks(tasks.filter((task) => task.status === status));
@@ -41,7 +43,7 @@ const TaskCardManagement = () => {
         <div>
           <Select
             size="large"
-            placeholder= "Filter By Status"
+            placeholder="Filter By Status"
             onChange={(value) => handleFilterByStatus(value)}
             style={{ width: 220 }}
             options={[
@@ -50,6 +52,11 @@ const TaskCardManagement = () => {
               { value: "Completed", label: "Completed" },
             ]}
           />
+        </div>
+        <div>
+          <Button size="large" type="primary" onClick={() => setIsAddModalOpen(true)}>
+            Add Task
+          </Button>
         </div>
       </div>
       <div className=" grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -65,6 +72,10 @@ const TaskCardManagement = () => {
           />
         ))}
       </div>
+      <TaskModal
+        open={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+      />
     </div>
   );
 };

@@ -9,12 +9,9 @@ import {
   SmilePlus,
   UserRoundPlus,
 } from "lucide-react";
+import { ITaskModalProps } from "@/types/types.global";
 
-interface ITaskModalProps {
-  open: boolean;
-  taskId: number | null;
-  onClose: () => void;
-}
+
 
 const TaskViewModal: React.FC<ITaskModalProps> = ({
   open,

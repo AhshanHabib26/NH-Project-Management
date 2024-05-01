@@ -14,17 +14,17 @@ import {
 import React, { useState } from "react";
 import TaskViewModal from "./TaskViewModal";
 import TaskModal from "./TaskModal";
+import TaskStatusUpdateModal from "./TaskStatusUpdateModal";
 
 const TaskCard: React.FC<ITaskProps> = ({
   id,
   name,
-  description,
   deadline,
   assignee,
   status,
 }) => {
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isStatusUpdateModalOpen, setIsStatusUpdateModalOpen] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState<number | null>(null);
 
   const handleTaskView = (taskId: number) => {
@@ -32,9 +32,9 @@ const TaskCard: React.FC<ITaskProps> = ({
     setIsViewModalOpen(true);
   };
 
-  const handleTaskEdit = (taskId: number) => {
+  const handleTaskStatusUpdate = (taskId: number) => {
+    setIsStatusUpdateModalOpen(true);
     setSelectedTaskId(taskId);
-    setIsEditModalOpen(true);
   };
 
   return (
@@ -76,7 +76,7 @@ const TaskCard: React.FC<ITaskProps> = ({
         <SquarePen
           size={20}
           className="mx-3"
-          onClick={() => handleTaskEdit(id)}
+          onClick={() => handleTaskStatusUpdate(id)}
         />
         <Trash2 size={20} />
       </div>
@@ -85,10 +85,10 @@ const TaskCard: React.FC<ITaskProps> = ({
         taskId={selectedTaskId}
         onClose={() => setIsViewModalOpen(false)}
       />
-      <TaskModal
-        open={isEditModalOpen}
+      <TaskStatusUpdateModal
+        open={isStatusUpdateModalOpen}
         taskId={selectedTaskId}
-        onClose={() => setIsEditModalOpen(false)}
+        onClose={() => setIsStatusUpdateModalOpen(false)}
       />
     </div>
   );
