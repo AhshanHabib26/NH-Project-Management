@@ -6,6 +6,7 @@ import { useStore } from "../zustand/store";
 import { Button, Input, Select } from "antd";
 import { ITaskProps } from "@/types/types.global";
 import TaskModal from "./TaskModal";
+import { Server } from "lucide-react";
 
 const TaskCardManagement = () => {
   const { tasks } = useStore();
@@ -19,14 +20,14 @@ const TaskCardManagement = () => {
   }, [tasks]);
 
   const handleFilterByStatus = (status: string) => {
-    setFilteredTasks(prevTasks =>
+    setFilteredTasks((prevTasks) =>
       prevTasks.filter((task) => task.status === status)
     );
   };
 
   const handleSearchQuery = (query: string) => {
     setSearchQuery(query);
-    setFilteredTasks(prevTasks =>
+    setFilteredTasks((prevTasks) =>
       prevTasks.filter(
         (task) =>
           task.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -61,24 +62,35 @@ const TaskCardManagement = () => {
           />
         </div>
         <div>
-          <Button size="large" type="primary" onClick={() => setIsAddModalOpen(true)}>
+          <Button
+            size="large"
+            type="primary"
+            onClick={() => setIsAddModalOpen(true)}
+          >
             Add Task
           </Button>
         </div>
       </div>
-      <div className=" grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {filteredTasks.map((task) => (
-          <TaskCard
-            key={task.id}
-            id={task.id}
-            name={task.name}
-            description={task.description}
-            deadline={task.deadline}
-            assignee={task.assignee}
-            status={task.status}
-          />
-        ))}
-      </div>
+      {filteredTasks.length === 0 ? (
+        <div className="flex flex-col items-center justify-center mt-32">
+          <Server size={30} color="#94A3B8" />
+          <h1 className=" text-2xl font-light text-slate-400 italic">There is no Task!</h1>
+        </div>
+      ) : (
+        <div className=" grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {filteredTasks.map((task) => (
+            <TaskCard
+              key={task.id}
+              id={task.id}
+              name={task.name}
+              description={task.description}
+              deadline={task.deadline}
+              assignee={task.assignee}
+              status={task.status}
+            />
+          ))}
+        </div>
+      )}
       <TaskModal
         open={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}

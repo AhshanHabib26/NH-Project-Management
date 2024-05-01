@@ -16,7 +16,8 @@ interface IState {
 
 export type Actions = {
   addTask: (newTask: ITask) => void;
-  updateStatus: (id: number, newStatus: string) => void; 
+  updateStatus: (id: number, newStatus: string) => void;
+  deleteTask: (id: number) => void;
 };
 
 export type StoreType = IState & Actions;
@@ -57,6 +58,15 @@ const useStore = create<StoreType>()(
           assignee: "David Lee",
           status: "In Progress",
         },
+        {
+          id: 5,
+          name: "Backend API Development",
+          description:
+            "Create RESTful APIs to handle client-server communication",
+          deadline: "2024-05-18",
+          assignee: "Eva Martinez",
+          status: "To Do",
+        },
       ],
       addTask: (newTask) => {
         set((state) => {
@@ -71,8 +81,14 @@ const useStore = create<StoreType>()(
             }
             return task;
           });
-  
+
           return { tasks: updatedTasks };
+        });
+      },
+      deleteTask: (id) => {
+        set((state) => {
+          const updatedTask = state.tasks.filter((task) => task.id !== id);
+          return { tasks: updatedTask };
         });
       },
     }),

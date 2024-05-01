@@ -14,6 +14,7 @@ import {
 import React, { useState } from "react";
 import TaskViewModal from "./TaskViewModal";
 import TaskStatusUpdateModal from "./TaskStatusUpdateModal";
+import { useStore } from "../zustand/store";
 
 const TaskCard: React.FC<ITaskProps> = ({
   id,
@@ -25,6 +26,7 @@ const TaskCard: React.FC<ITaskProps> = ({
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
   const [isStatusUpdateModalOpen, setIsStatusUpdateModalOpen] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState<number | null>(null);
+  const { deleteTask } = useStore();
 
   const handleTaskView = (taskId: number) => {
     setSelectedTaskId(taskId);
@@ -77,7 +79,7 @@ const TaskCard: React.FC<ITaskProps> = ({
           className="mx-3"
           onClick={() => handleTaskStatusUpdate(id)}
         />
-        <Trash2 size={20} />
+        <Trash2 size={20} onClick={() => deleteTask(id)} />
       </div>
       <TaskViewModal
         open={isViewModalOpen}
