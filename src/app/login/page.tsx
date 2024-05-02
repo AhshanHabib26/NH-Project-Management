@@ -13,6 +13,10 @@ import toast from "react-hot-toast";
 const LoginPage = () => {
   const router = useRouter();
   const onSubmit = async (data: FieldValues) => {
+    if (!data.email && !data.password) {
+      return toast.error("Email and Password field are empty!");
+    }
+
     try {
       const res = await userLogin(data);
       if (res?.success) {

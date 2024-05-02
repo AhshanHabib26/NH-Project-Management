@@ -13,6 +13,10 @@ const RegisterPage = () => {
   const router = useRouter();
 
   const onSubmit = async (data: FieldValues) => {
+    if (!data.name && !data.email && !data.password) {
+      return toast.error("Filled up all input fields");
+    }
+
     try {
       const res = await userRegister(data);
       if (res?.success) {
