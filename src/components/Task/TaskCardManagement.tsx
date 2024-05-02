@@ -7,6 +7,7 @@ import { Button, Input, Select } from "antd";
 import { ITaskProps } from "@/types/types.global";
 import TaskModal from "./TaskModal";
 import { Server } from "lucide-react";
+import DragStatusButton from "./DragStatusButton";
 
 const TaskCardManagement = () => {
   const { tasks } = useStore();
@@ -93,6 +94,7 @@ const TaskCardManagement = () => {
         open={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}
       />
+      <DragStatusButton/>
     </div>
   );
 };

@@ -16,6 +16,7 @@ import TaskViewModal from "./TaskViewModal";
 import TaskStatusUpdateModal from "./TaskStatusUpdateModal";
 import { useStore } from "../zustand/store";
 import { Tooltip } from "antd";
+import { handleDragNDropUtilityFunc } from "@/utils/actions/handleDragNDrop";
 
 const TaskCard: React.FC<ITaskProps> = ({
   id,
@@ -47,21 +48,27 @@ const TaskCard: React.FC<ITaskProps> = ({
     e.preventDefault();
   };
 
-  const handleDragDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    const taskId = parseInt(e.dataTransfer.getData("taskId"), 10);
-    handleDrop(taskId, "Done");
+ 
+  const handleDragDrop = (e: React.DragEvent<HTMLDivElement>, newStatus: string) => {
+    handleDragNDropUtilityFunc(e, newStatus, handleDrop);
   };
+  
+
+
 
   return (
     <div
       draggable
       onDragStart={handleDragStart}
       onDragOver={handleDragOver}
-      onDrop={handleDragDrop}
+      onDrop={(e) => handleDragDrop(e, "Done")}
       className=" shadow border border-gray-200 p-5 rounded-lg"
     >
-      <Tooltip title="Grab and Move To Change Status" color="purple-inverse" key="blue">
+      <Tooltip
+        title="Grab and Place it Desaire Button to Change Status"
+        color="purple-inverse"
+        key="purple-inverse"
+      >
         <h1 className="text-lg font-semibold text-slate-600 cursor-grab">
           {name}
         </h1>
@@ -102,7 +109,7 @@ const TaskCard: React.FC<ITaskProps> = ({
           <Eye size={20} onClick={() => handleTaskView(id)} />
         </Tooltip>
 
-        <Tooltip title="Update Task Status" color="orange" key="blue">
+        <Tooltip title="Update Task Status" color="orange" key="orange">
           <SquarePen
             size={20}
             className="mx-3"
@@ -110,7 +117,7 @@ const TaskCard: React.FC<ITaskProps> = ({
           />
         </Tooltip>
 
-        <Tooltip title="Delete Task" color="red" key="blue">
+        <Tooltip title="Delete Task" color="red" key="red">
           <Trash2 size={20} onClick={() => deleteTask(id)} />
         </Tooltip>
       </div>
