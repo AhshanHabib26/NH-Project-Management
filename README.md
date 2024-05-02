@@ -2,7 +2,7 @@
 
 - Project Name: NH Project Management (Project Management Dashboard)
 - Project Technology:
-  - Frontend: NextJS, TypeScript, Tailwind.
+  - Frontend: NextJS, TypeScript, Tailwind, Zustand, UI Library(AntD).
 - Project URL:
   - For Frontend: [`https://nh-project-management.vercel.app/`]
 
@@ -17,6 +17,10 @@
   - Dashboard
   - All Project
   * Task Management (CRUD)
+    * Task Added
+    * Status Update
+    * Drag N Drop Status Change
+    * Task Delete
 
 ## For Using This Awesome Project On Your Local Machine, Getting Started
 
