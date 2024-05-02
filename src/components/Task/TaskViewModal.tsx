@@ -11,8 +11,6 @@ import {
 } from "lucide-react";
 import { ITaskModalProps } from "@/types/types.global";
 
-
-
 const TaskViewModal: React.FC<ITaskModalProps> = ({
   open,
   taskId,
@@ -23,7 +21,13 @@ const TaskViewModal: React.FC<ITaskModalProps> = ({
 
   return (
     <div>
-      <Modal title={task?.name} open={open}  onCancel={onClose} onOk={onClose}>
+      <Modal
+        title={task?.name}
+        open={open}
+        onCancel={onClose}
+        footer={null}
+        centered={true}
+      >
         <div>
           <h1 className="text-lg  text-slate-600">{task?.description}</h1>
           <div>

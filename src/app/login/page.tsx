@@ -21,7 +21,7 @@ const LoginPage = () => {
       const res = await userLogin(data);
       if (res?.success) {
         toast.success(res?.message);
-        router.push("/dashboard");
+        router.push("/dashboard/all-project");
       } else if (!res?.success) {
         toast.error(res.message);
       }
